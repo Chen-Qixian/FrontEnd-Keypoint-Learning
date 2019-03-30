@@ -1,75 +1,80 @@
 *{
     margin:0;
-    padding:0;
-    list-style: none;
+    padding:0;  /*初始化页面*/
+    list-style: none; /*清除原点*/
 }
 body{
     background: #ccc;
 }
 
 .container{
-    margin: 30px auto;
+    margin: 30px auto;  /*导航栏位置的确定上下空30px左右自适应*/
     width : 70%;
 }
 
+.container .menu{
+    height:58px;
+}
+
+.menu>li{ /*只将主菜单栏水平布局，需要用>来进行选择*/
+    float:left;  /*导航栏水平布局*/
+    position: relative; /*为了消除重叠效果，需要让其子元素脱离文档流absolute*/
+}
+
+.menu li{
+    min-width: 140px; /*设置最小宽度撑开宽度*/
+    background: linear-gradient(#3d3838,#999999); /*渐变色*/
+}
 
 .container .menu>li:first-child{
     border-radius: 5px 0 0 0;
 }
 
-.container .menu>li{
-    float:left;
-}
-
-.container .menu li{
-    min-width: 140px;
-    background: linear-gradient(#3d3838,#999999);
-    position: relative;
-}
-
-.container a{
-    display:block;
-    text-decoration: none;
-    text-align: center;
+.menu a{
+    display:block;   /*a标签可以覆盖整个容器范围*/  
+    text-decoration: none;   /*a标签取消下划线*/
+    text-align: center;  /*文字水平居中*/
     color:black;
     padding:0 25px;
-    font-size: 14px;
-    line-height:36px;
-    border-left:3px solid rgb(0,0,0,0);
-    text-transform:uppercase;
+    font-size: 18px;
+    line-height:36px;  /*撑开行高*/
+    border-left:3px solid rgb(0,0,0,0);  /*左边竖线占位（透明度0）*/
+    text-transform:uppercase; /*全部转成大写字母*/
 }
 
 .menu li:hover{
     background: linear-gradient(#111111,#424242);
 }
 
-.menu li:hover>a{
+.menu li:hover>a{  /*需要选择其直属子元素，而不是全部的a标签子元素*/
     color:white;
-    border-left:3px solid white;
+    border-left:3px solid white;  /*显示左边小竖线*/
 }
 
 .submenu{
-    position:absolute;
+    position:absolute; /*脱离文档流，定位相对于父级第一个有定位的元素*/
     left:0;
-    top:100%;
-    perspective:1000px;
-    max-height: 0;
+    top:100%;       /*相对于父级li最底部进行定位*/
+    perspective:1000px;  /*设置景深*/
+    max-height: 0;   /*默认情况下需要将其隐藏，行高缩小至0*/
+    z-index:0;
 }
 
 .submenu li{
-    transform: rotate3d(1,0,0,90deg);
-    transition: all 0.5s;
-    visibility:hidden;
+    visibility:hidden;  /*这是为了避免仍有元素占位，鼠标划过下方空白区域时会触发的bug*/
+    transform: rotate3d(1,0,0,90deg); /*3d旋转效果，绕x轴旋转，90°*/
+    transition: all 0.5s; /*过渡动画，选择all属性，过渡时间为0.5s*/
+    
 }
 
-.menu>li:hover .submenu{
-    max-height: 999;
+.menu>li:hover .submenu{ 
+    max-height: 999px;
     z-index:10;
 }
 
 .menu>li:hover .submenu li{
-    transform: rotate3d(0,0,0,0);
-    visibility: visible;
+    visibility: visible; /*调成可见*/
+    transform: rotate3d(0,0,0,0deg); /*实现3d旋转效果，绕x轴旋转，从90°变化到0°*/  
 }
 
 .submenu li:nth-child(1){
