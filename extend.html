@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS Extend</title>
+</head>
+<body>
+    <script>
+
+    // 继承方式1：属性拷贝（遍历对象中的key进行赋值）
+    // 创建父对象
+    var superObj = {
+        name : 'Xianxian',
+        age : 20,
+        friends : ['Shuoshuo', 'Srue' , 'YanShuo' ],
+        showName : function(){
+            console.log(this.name);
+        }
+    }
+    // 创建子对象
+    var subObj = {};
+
+    for(var i in superObj){
+        subObj[i] = superObj[i];
+    }
+    
+    subObj.friends.push('MyLove');
+    // console.log(superObj);
+    // console.log(subObj,subObj.friends);
+    // 问题：继承过来的引用类型在父子对象中是共享的，即对其修改会同时影响父子对象中的值。
+
+
+
+    // 继承方式2:原型式继承
+    // 创建父类构造函数
+    function SuperClass(name){
+        this.name = name;
+        this.sayName = function(){
+            console.log(this.name);
+        }
+    }
+
+    // 设置父类构造原型对象
+    SuperClass.prototype.age = 20;
+    SuperClass.prototype.friends = ['Shuoshuo','Yanshuo'];
+    SuperClass.prototype.showAge = function(){
+        console.log(this.age);
+    }
+
+
+    // 创建空的子类构造函数
+    function SubClass(){
+
+    }
+
+    // 借用构造函数的原型对象继承 即子类.prototype = 父类.prototype
+    SubClass.prototype = SuperClass.prototype;
+    // 此时，子类构造函数的原型被覆盖，其构造函数指向父类，需要修正其值指向子构造函数，验证如下：
+    // console.log(SubClass.prototype.constructor == SuperClass); // true
+    // console.log(SuperClass.prototype.constructor == SuperClass); // true
+    // 修改如下，之后即完成继承
+    SubClass.prototype.constructor = SubClass;
+    var child = new SubClass();
+    // console.log(child.friends);
+    child.friends.push('Mylove');
+    child.age = 10;
+    var father = new SuperClass("ChrisChen");
+    // child中继承的只有显示表示出的prototype部分的属性值，父构造函数中的属性不会被继承
+    // 即只能继承父构造函数原型对象上的成员，不能继承父构造函数实例对象上的成员
+    // console.log(child); //没有name,sayName()这些属性
+    father.showAge();
+    // 同样，该继承方式存在引用属性的成员共享问题
+    // console.log(father.friends); // 会多出'MyLove'
+
+
+
+    // 继承方式3：原型链继承
+    // 创建父构造函数
+    function SuperClass1(){
+        this.name = 'ChenQixian';
+        this.age  = 20;
+        this.sayName = function(){
+            console.log(this.name);
+        }
+    }
+
+    // 设置父构造函数的原型
+    SuperClass1.prototype.friends = ['YanShuo' , 'Sure!'];
+    SuperClass1.prototype.showAge = function(){
+        console.log(this.age);
+    }
+
+    // 创建子构造函数
+    function SubClass1(){
+
+    }
+
+    // 原型链继承方式：子构造函数.prototype = new 父构造函数()
+    SubClass1.prototype = new SuperClass1();
+    // 同原型式继承，也要对子构造函数构造器进行修改(由于子构造器原型被覆盖)，从而实现继承
+    SubClass1.prototype.constructor = SubClass;
+    // 不同于原型式继承，这里会将父构造函数实例对象中的属性也继承
+    var child = new SubClass1();
+    // console.log(child.name); // ChenQixian
+    // console.log(child.friends); // ["YanShuo", "Sure!"]
+    child.sayName(); // ChenQixian
+    child.showAge(); // 20
+    // 同样存在父子对象中引用属性的共享问题
+    var father = new SuperClass1();
+    // console.log(father.friends); // ["YanShuo", "Sure!"]
+    child.friends.push('myLove');
+    // console.log(father.friends); // ["YanShuo", "Sure!", "myLove"]
+    // console.log(child.friends); // ["YanShuo", "Sure!", "myLove"]
+    // 总结：
+    // (1) 过多的继承了没用的属性，继承冗余
+    // (2) 不支持多继承，只能继承自通过一个父类
+    // (3) 创建子类实例时，不能向父类构造函数传参
+
+
+
+    // 继承方式4：call(),apply()借用构造函数
+    // 创建父构造函数
+    function Person(name){
+        this.name = name;
+        this.friends = ['ShuoShuo','Sure'];
+        this.sayName = function(){
+            console.log(this.name);
+        }
+    }
+    // 创建子构造函数
+    function Student(name){
+        console.log(this);
+        // 调用call借用Person构造函数改变this指向
+        Person.call(this , name);
+    }
+    // 可以给父构造函数传参(这里传递了name)，同时引用成员不存在共享问题
+    var stu = new Student('ChenQixian');
+    stu.sayName(); // ChenQixian
+    var pcs = new Person('Person');
+    // console.log(pcs.friends); // ["ShuoShuo", "Sure"]
+    stu.friends.push('My_Love');
+    // console.log(pcs.friends); // ["ShuoShuo", "Sure"]
+    // console.log(stu.friends); // ["ShuoShuo", "Sure", "My_Love"]
+
+    //总结：
+    // (1)使用方法：使用call,apply函数：区别在于apply传参数数组，call传参数列表
+        /*apply()方法*/
+        // function.apply(thisObj[, argArray])
+        /*call()方法*/
+        // function.call(thisObj[, arg1[, arg2[, [,...argN]]]]);
+    // (2)不能借用原型
+    // (3)每次构造多调一个函数，增加了函数调用
+
+
+
+    // 继承方式5:借用构造函数 + 原型式继承
+    // 创建父构造函数
+    function Person1(name , age){
+        this.name = name;
+        this.age  = age;
+        this.sayName = function(){
+            console.log(this.name);
+        }
+    }
+    // 设置父构造函数的原型对象
+    Person1.prototype.showAge = function(){
+        console.log(this.age);
+    }
+    Person1.prototype.friends = ['ShuoYan','SureYan'];
+    // 创建子构造函数
+    function Student1(name , age){
+        Person1.call(this , name , age);
+    }
+    // 设置原型式继承
+    Student1.prototype = Person1.prototype;
+    Student1.prototype.constructor = Student1;
+    // 验证如下
+    var stu1 = new Student1('ChenQixian' , 19);
+    stu1.sayName(); // ChenQixian
+    stu1.showAge(); // 19
+    var pcs = new Person1('Person' , 21);
+    // console.log(pcs.friends); // ["ShuoYan", "SureYan"]
+    stu.friends.push('My_Love');
+    // console.log(pcs.age);
+    // console.log(pcs.friends); // ["ShuoYan", "SureYan", "My_Love"]
+    // console.log(stu.friends); // ["ShuoYan", "SureYan", "My_Love"]
+
+    // 总结：
+    // (1) 继承了父构造函数原型对象上的成员以及父构造函数上的属性
+    // (2) 实现了向父构造对象的参数传递
+    // (3) 仍存在引用成员共享的问题
+
+
+
+    // 继承方式6：圣杯模式 仅继承原型的属性
+
+    var inherit = (function(){
+        var F = function(){};
+        return function(Target , Origin){
+            F.prototype = Origin.prototype;
+            Target.prototype = new F();
+            Target.prototype.constructor = Target;
+            Target.prototype.uber = Origin.prototype;   
+        }
+    })();
+
+    function Animal(name , age){
+        this.name = name;
+        this.age  = age;
+    }
+
+    Animal.prototype.eat = function(){
+        console.log('Animal eat.');
+    }
+
+    function Person2(){
+
+    }
+
+    inherit(Person2 , Animal);
+
+    var p = new Person2();
+
+    p.eat();
+
+    </script>
+</body>
+</html>

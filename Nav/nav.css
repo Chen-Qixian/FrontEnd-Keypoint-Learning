@@ -1,0 +1,92 @@
+*{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+body{
+    background: #ccc;
+}
+
+.container{
+    margin: 30px auto;
+    width : 70%;
+}
+
+
+.container .menu>li:first-child{
+    border-radius: 5px 0 0 0;
+}
+
+.container .menu>li{
+    float:left;
+}
+
+.container .menu li{
+    min-width: 140px;
+    background: linear-gradient(#3d3838,#999999);
+    position: relative;
+}
+
+.container a{
+    display:block;
+    text-decoration: none;
+    text-align: center;
+    color:black;
+    padding:0 25px;
+    font-size: 14px;
+    line-height:36px;
+    border-left:3px solid rgb(0,0,0,0);
+    text-transform:uppercase;
+}
+
+.menu li:hover{
+    background: linear-gradient(#111111,#424242);
+}
+
+.menu li:hover>a{
+    color:white;
+    border-left:3px solid white;
+}
+
+.submenu{
+    position:absolute;
+    left:0;
+    top:100%;
+    perspective:1000px;
+    max-height: 0;
+}
+
+.submenu li{
+    transform: rotate3d(1,0,0,90deg);
+    transition: all 0.5s;
+    visibility:hidden;
+}
+
+.menu>li:hover .submenu{
+    max-height: 999;
+    z-index:10;
+}
+
+.menu>li:hover .submenu li{
+    transform: rotate3d(0,0,0,0);
+    visibility: visible;
+}
+
+.submenu li:nth-child(1){
+    transition-delay: 0;
+}
+.submenu li:nth-child(2){
+    transition-delay: 100ms;
+}
+.submenu li:nth-child(3){
+    transition-delay: 200ms;
+}
+.submenu li:nth-child(4){
+    transition-delay: 300ms;
+}
+.submenu li:nth-child(5){
+    transition-delay: 400ms;
+}
+.submenu li:nth-child(6){
+    transition-delay: 500ms;
+}
