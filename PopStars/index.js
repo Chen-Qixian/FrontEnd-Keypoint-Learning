@@ -184,7 +184,7 @@ function init(){ // JS调用入口
     for(var i = 0 ; i < boardWidth ; i ++){
         squareSet[i] = new Array(); //二维数组的创建，对每一个元素new Array()创建新数组
         for(var j = 0 ; j < boardWidth ; j ++){
-            var square = createSquare(Math.floor(Math.random() * 3) , i , j);
+            var square = createSquare(Math.floor(Math.random() * 5) , i , j);
             // 鼠标移入事件
             square.onmouseover = function(){
                 mouseOver(this);
