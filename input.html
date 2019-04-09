@@ -7,44 +7,73 @@
     <title>Input</title>
 </head>
 <body>
-    兴趣爱好：
-    <input type="checkbox" id="阅读" value="提交">
-    <label for="阅读">阅读</label>
-    <input type="checkbox" id="写作" value="提交">
-    <label for="写作">写作</label>
-    <input type="checkbox" id="写代码" value="提交">
-    <label for="写代码">写代码</label>
-    <br>
-    性别：
-    <input type="radio" name="sex" id="male"><label for="male">男</label>
-    <input type="radio" name="sex" id="female"><label for="female">女</label>
-    <br>
-    密码：
-    <input type="password" id="pwd">
-    <br>
-    上传照片：
-    <input type="file" name="img">
-    <br>
-    <input type="hidden" name="avitor" id="1">
-    <br>
+    <form action="#">
+        <!-- HTML原有的type类型 -->
+        兴趣爱好：
+        <input type="checkbox" id="阅读" value="提交">
+        <label for="阅读">阅读</label>
+        <input type="checkbox" id="写作" value="提交">
+        <label for="写作">写作</label>
+        <input type="checkbox" id="写代码" value="提交">
+        <label for="写代码">写代码</label>
+        <br>
+        性别：
+        <input type="radio" name="sex" id="male"><label for="male">男</label>
+        <input type="radio" name="sex" id="female"><label for="female">女</label>
+        <br>
+        密码：
+        <input type="password" id="pwd">
+        <span id="showPwd">显示密码</span>
+        <br>
+        上传照片：
+        <input type="file" name="img">
+        <br>
+        <input type="hidden" name="avitor" id="1">
+        <br>
+        <!-- h5新增type类型 -->
+        选择时间：
+        <input type="date">
+        <input type="time">
+        <input type="week">
+        <input type="datetime-local">
+        <br>
+        输入学号：
+        <input type="number" name="number">
+        <br>
+        输入邮箱：
+        <input type="email" name="email">
+        <br>
+        选择颜色：
+        <input type="color" name="color">
+        <input type="submit" value="submit">
+        <br>
+        输入链接：
+        <input type="url">
+        <br>
+        搜索内容：
+        <input type="search" name="search">
+        <input type="submit" value="search">
+        <br>
+        输入范围：
+        <input type="range" min="0" max="100" name="range">
 
+        <input type="submit" id="submit">
+        <input type="reset" value="重置">
+        <!-- 可以点击图片，将点击位置传到后端 -->
+        <input type="image" src="./PopStars/pic/0.png">
+    </form>
+      
 
-    <input type="submit" id="submit">
-    <input type="reset" value="重置">
-    <span id="showPwd">显示密码</span>
-    <!-- 可以点击图片，将点击位置传到后端 -->
-    <input type="image" src="#">  
-
-    <script>
-        var submitBtn = document.getElementById('submit');
+    <script> 
         showPwd.onclick = function(e){
             pwd.type = 'text';
         }
-        submitBtn.onclick = function(e){
-            console.log(pwd.value);
-            e.preventDefault();
-            return false;
-        }
+        // var submitBtn = document.getElementById('submit');
+        // submitBtn.onclick = function(e){
+        //     console.log(pwd.value);
+        //     e.preventDefault();
+        //     return false;
+        // }
     </script>
 </body>
 </html>
