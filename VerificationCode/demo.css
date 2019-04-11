@@ -1,0 +1,81 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    margin: 50px auto;
+    padding: 20px;
+    width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-sizing: border-box;
+    position: relative;
+}
+.inputBox{
+    position: relative; /*absolute定位相对于有定位的最近的父元素*/
+}
+.inputBox .inp{
+    display: inline-block;
+    width: 270px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /*调整为IE盒模型，将border与padding计算入width内*/
+    padding: 10px;
+    margin: 10px 0;
+    outline: none;
+}
+.inputBox .icon{
+    display: none;
+    /* display: inline-block; */
+    height: 32px;
+    width: 32px;
+    background: url(images/true.png);
+    background-size: 100%;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -16px;
+}
+.errorText{
+    display: none;
+    /* display: inline-block; */
+    color: red;
+    font-size: 14px;
+    margin-left: -10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+canvas{
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: url(images/bg.jpg);
+    box-sizing: border-box;
+}
+.box{
+    position: relative;
+}
+.refresh{
+    width: 32px;
+    height: 32px;
+    background: url(images/update.png);
+    background-size: 100%;
+    border: 0;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    margin-top: -16px;
+    right: 0;
+    outline: none;
+    cursor: pointer;
+}
+.submit{
+    color: #fff;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 5px;
+    background-color: #62b900;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    margin-top: 15px;
+}

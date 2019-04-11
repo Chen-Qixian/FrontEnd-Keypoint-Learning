@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Verification Code</title>
+    <link rel="stylesheet" href="demo.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="inputBox">
+            <input type="text" class="inp">
+            <span class="icon"></span>
+        </div>
+        <p class="errorText">Wrong verification code!<br>Please check and input again!</p>
+        <div class="box">
+            <canvas id="myCanvas" width="270" height="80"></canvas>
+            <input type="button" class="refresh">
+        </div>
+        <button class="submit">submit</button>
+    </div>
+
+    <script src="jquery.js"></script>
+    <script src="demo.js"></script> 
+</body>
+</html>

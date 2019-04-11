@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>rem</title>
+    <style>
+        html{
+            font-size: 20px;
+        }
+        div{
+            /* CSS像素 ：逻辑像素*/
+            height: 90px;
+            width: 90px;
+            background-color: red;
+            /* 物理像素：设备出厂时即被设定好的（也叫设备像素） */
+            /* 设备像素比dpr = 物理像素/CSS像素 */
+        }
+        .demo{
+            font-size: 16px;
+        }
+        .demo .em{
+            /* 相对于父级字体大小 */
+            font-size: 2em;
+        }
+        .demo .rem{
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!--rem&em
+        em：font-size的值 相对于父级字体大小
+            width height的值 相对于自身字体大小
+        注意：谷歌浏览器限制最小字体大小为12px若设置低于12px则字体大小按12px计算
+        rem:相对于跟标签html的font-size值
+         -->
+    <div class="demo">
+        <p class="em">先先硕硕</p>
+        <div class="rem">喜欢</div>
+    </div>
+</body>
+</html>
