@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+    background: hsl(194,66%,49%);
+}
+.wrapper{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    border: 1px solid #000;
+    position: relative;
+}
+.wrapper .title{
+    position: absolute;
+    text-align: center;
+    color: #fff;
+
+}
+.wrapper .per{
+
+}
+.wrapper .circle{
+    width: 20%;
+    padding-top: 20%;
+    position: absolute;
+    border: 1px solid #000;
+    border-radius: 50%;
+    top: 30%;
+    left: 30%;
+}
+.wrapper .circle.sun{
+    background: #ffff77;
+    box-shadow: 0 0 50px #ff7;
+}
+.wrapper .circle.moon{
+    left: 52%;
+    box-shadow: inset 0 0 50px #ff7;
+    cursor: pointer;
+}

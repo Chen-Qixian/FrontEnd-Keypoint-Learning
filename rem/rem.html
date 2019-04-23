@@ -23,19 +23,39 @@
         .demo .em{
             /* 相对于父级字体大小 */
             font-size: 2em;
+            width: 3em;
+            height: 3em;
         }
         .demo .rem{
             font-size: 2rem;
+            width: 5rem;
+            height: 5rem;
+            background-color: aqua;
         }
     </style>
 </head>
 <body>
-    <!--rem&em
-        em：font-size的值 相对于父级字体大小
-            width height的值 相对于自身字体大小
+    <!--
+        rem&em
+        em：1. font-size的值 相对于父级字体大小
+            2. width height的值 相对于自身字体大小
         注意：谷歌浏览器限制最小字体大小为12px若设置低于12px则字体大小按12px计算
         rem:相对于跟标签html的font-size值
-         -->
+    -->
+    <!--屏幕尺寸
+        640 * 1136 -> 物理像素 
+        eg: iphone5 dpr = 2
+        一个div在设计稿里的实际宽度200px -> 100px 
+        320 * 568 -> CSS像素
+
+        一列占：320 / 16 (总列数：自己设置) = 20px (每列占的CSS像素)
+        一个div元素所占列数 = 100px / 20px = 5rem
+
+        1. 元素适配宽度 = 元素所占列数rem
+        2. 一列的宽度 = 屏幕实际宽度 / 总列数
+        3. 元素实际列数 = 元素在设计稿里的宽度 / 一列的宽度
+    -->
+        
     <div class="demo">
         <p class="em">先先硕硕</p>
         <div class="rem">喜欢</div>
