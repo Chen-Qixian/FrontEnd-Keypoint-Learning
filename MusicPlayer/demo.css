@@ -5,29 +5,43 @@
 html,body{
     height: 100%;
     width: 100%;
+    /* 色相 饱和度 亮度 */
     background: hsl(194,66%,49%);
 }
 .wrapper{
     width: 70%;
     height: 100%;
     margin: 0 auto;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     position: relative;
 }
 .wrapper .title{
     position: absolute;
-    text-align: center;
+    top: 100px;
+    width: 100%;
+    /* text-align: center; */
     color: #fff;
-
+    font-size: 24px;
+    font-weight: bold;
 }
 .wrapper .per{
-
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
 }
 .wrapper .circle{
+    /* 重点：实现自适应的圆形 */
+    /* 宽度相对于父级的20%，但高度若设成相对于父级的20%可能会出问题，因为父级未必是正方形 */
+    /* 解决方案是将高度设为0，并设置padding-top */
     width: 20%;
     padding-top: 20%;
     position: absolute;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     border-radius: 50%;
     top: 30%;
     left: 30%;
@@ -37,7 +51,17 @@ html,body{
     box-shadow: 0 0 50px #ff7;
 }
 .wrapper .circle.moon{
+    /* 留出两个圆形之间的空隙 */
     left: 52%;
-    box-shadow: inset 0 0 50px #ff7;
+    /* inset向里阴影，阴影左右偏移量，阴影上下偏移量，阴影宽度，阴影颜色 */
+    box-shadow: inset 0px 0px 50px rgba(255,255,119,0.3);
     cursor: pointer;
+}
+.wrapper .author{
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    position: absolute;
+    bottom: 15%;
 }

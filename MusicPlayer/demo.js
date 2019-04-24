@@ -1,5 +1,6 @@
-var obj={
+var obj = {
     init:function(){
+        // 这里与jquery不同，字符串直接写类名即可，无需在前面加.
         this.moon = document.getElementsByClassName('moon')[0];
         this.sun  = document.getElementsByClassName('sun')[0];
         this.bindEvent();
@@ -9,20 +10,24 @@ var obj={
         var body = document.getElementsByTagName('body')[0];
         var dis;
         var self = this;
+        var flag = false;
         moon.onmousedown = function(e){
             dis = e.clientX - moon.offsetLeft;
             flag = true;
         };
         body.onmousemove = function(e){
             if(!flag) return;
-            moon.style.left = e.clientX - dis + 'px';
+            moon.style.left = (e.clientX - dis) + 'px';
+            self.getPer();
         };
         body.onmouseup = function(e){
-        
+            flag = false;
         };
     },
     getPer:function(){
-        var self = this;
+        var self = this; 
+        var sun = self.sun;
+        var moon = self.moon;
         var per;
         var d = moon.clientWidth,
         mL = moon.offsetLeft,
@@ -42,14 +47,18 @@ var obj={
         }
         self.change(per);
     },
-    change:function(){
+    change:function(vol){
         var audio = document.getElementsByTagName('audio')[0];
         var body = document.getElementsByTagName('body')[0];
+        var per = document.getElementsByClassName('per')[0];
         var moon = this.moon;
-        per > 0 ? audio.play():audio.pause();
-        audio.volumn = per;
-        moon.style.background = "hsl(194,66%," + (1 - per) * 60 + "%)"
+        vol > 0 ? audio.play():audio.pause();
+        audio.volume = vol;
+        var str = "Volume:" + (vol*100).toPrecision(4) + "%";
+        per.innerHTML = str;
+        moon.style.background = "hsl(194,66%," + (1 - vol) * 60 + "%)";
+        body.style.background = "hsl(" + (194 + Math.floor(166*vol)) + ", 66%," + (1 - vol) * 50 + "%)";
     }
 }
 
-obj.function();
+obj.init();
