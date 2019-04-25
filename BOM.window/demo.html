@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BOM_Window</title>
+</head>
+<body>
+        <!-- 
+        - 要求1：在当前窗口打开，替换当前窗口内容
+        - 要求2：替换当前窗口内容，禁止后退
+        - 要求3：新窗口打开，同时打开多个
+        - 要求4：新窗口打开，只能打开一个 -->
+    HTML实现部分 <br>
+    <a href="http://www.baidu.com" target="_self">1.在当前窗口打开，替换当前窗口内容</a><br>
+    <a href="http://www.baidu.com" target="_blank">3.新窗口打开，同时打开多个</a><br>
+    <a href="http://www.baidu.com" target="baidu">4.新窗口打开，只能打开一个</a><br>
+    <!-- 可以用html的href修改成执行javascript的内容 -->
+    Javascript实现部分 <br>
+    <a href="javascript:open1()">1.在当前窗口打开，替换当前窗口内容</a><br>
+    <a href="javascript:open2()">2.替换当前窗口内容，禁止后退</a><br>
+    <a href="javascript:open3()">3.新窗口打开，同时打开多个</a><br>
+    <a href="javascript:open4()">4.新窗口打开，只能打开一个 </a><br>
+    <script>
+        function open1(){ // 在当前窗口打开，替换当前窗口内容
+            window.open("http://www.baidu.com","_self");
+        }
+        function open2(){ // 替换当前窗口内容，禁止后退
+            location.replace("http://www.baidu.com"); 
+            // 逻辑上：强行将当前地址替换成目标地址
+            // 流氓广告做法，慎用
+        }
+        function open3(){ // 新窗口打开，同时打开多个
+            window.open("http://www.baidu.com","_blank");
+            //在JS中默认是blank，而html默认是self
+        }
+        function open4(){ // 新窗口打开，只能打开一个 
+            window.open("http://www.baidu.com","baidu");
+            //浏览器规定，同一个name只能打开一个，若重复打开，则已后打开的同名窗口替换掉先打开的
+            //支付页面常用设置
+        }
+    </script>
+</body>
+</html>
