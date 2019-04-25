@@ -12,6 +12,7 @@ body{
     margin: 100px auto;
     border: 1px solid red;
     position: relative;
+    /* 隐藏超出区域范围的文本内容 */
     overflow: hidden;
 }
 .container .content{

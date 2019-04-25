@@ -60,7 +60,7 @@
     function scrollWheel(container , item){
         var speed = 5;
         container.onmousewheel = function(e){
-            console.log(e.wheelDelta); //上下滑动滑轮
+            // console.log(e.wheelDelta); //上下滑动滑轮
             if(e.wheelDelta > 0){ //向上滑动滑轮
                 item.style.top = item.offsetTop - speed + 'px';
                 if(item.offsetTop <= 0){
@@ -75,7 +75,6 @@
             }
             contentMove(item);
         }
-        
     }
 
     function init(){
