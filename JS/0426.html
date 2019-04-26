@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Extend_2</title>
+</head>
+<body>
+    <script>
+        // 圣杯模式继承：基本版
+        // function inherit(origin , target){
+        //     function F(){};
+        //     F.prototype = origin.prototype;
+        //     target.prototype = new F();
+        //     target.prototype.constructor = target;
+        //     target.prototype.uber = origin.prototype;
+        // }
+        // 圣杯模式继承：YUI3类库的版本，形成闭包实现F(){}的变量私有化。
+        var inherit = (function(){
+            function F(){}
+            return function(origin,target){
+                F.prototype = origin.prototype;
+                target.prototype = new F();
+                target.prototype.constructor = target;
+                target.prototype.uber = origin.prototype;
+            }
+        })();
+
+        inherit(Father,Son);
+        function Father(){}
+        function Son(){}
+        Father.prototype.lastName = "Chen";
+        var father = new Father();
+        var son = new Son();
+        Son.prototype.firstName = "Xianxian";
+        console.log(son);
+        console.log(father);
+    </script>
+    <script>
+        // 深拷贝
+        function deepClone(origin,target){
+            var target = target || {},// 容错，防止忘记传入target
+                toStr  = Object.prototype.toString,
+                arrStr = '[object Array]';// 用于判断object是否为一个数组
+            for(var prop in origin){
+                if(origin.hasOwnProperty(prop)){// 首先判断是否为origin的私有属性，不是的话不克隆
+                    if(origin[prop] !== "null" && typeof(origin[prop]) == 'object'){
+                        // 先判断是否为null，再判断该位置应该是数组还是对象
+                        target[prop] = (toStr.call(origin[prop]) == arrStr) ? [] : {};
+                        // 递归调用深拷贝
+                        deepClone(origin[prop],target[prop]); 
+                    }
+                    else{
+                        // 递归调用出口
+                        target[prop] = origin[prop];
+                    }
+                }
+            }
+            return target;
+        }
+        var obj = {
+            name : "ChenQX",
+            age : 18,
+            card : ['visa','unionpay','master'],
+            son :{
+                name : "LiuCJ",
+                age : 18,
+                card : ['unionpay'],
+                grade :{
+                    math : 59,
+                    english :58,
+                    history : 57
+                }
+            }
+        };
+        var obj1 = {};
+        deepClone(obj,obj1);
+        obj1['card'].push('ICBC');
+        console.log(obj);
+        console.log(obj1);
+    </script>
+</body>
+</html>
