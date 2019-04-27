@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // prototype chain
+        Grand.prototype.lastName = "Chen";
+        function Grand(){}
+        var grand = new Grand();
+        Father.prototype = grand;
+        function Father(){
+            this.firstName = "Xianxian";
+            this.fortune = {
+                card1 : 'visa'
+            } 
+        }
+        var father = new Father();
+        Son.prototype = father;
+        function Son(){
+            this.hobby = "play";
+        }
+        var son = new Son();
+    </script>
+    <script>
+        // namespace
+        var name = 'global';
+        var initChen = (function(){
+            var name = 'local';
+            function output(){
+                console.log(name);
+            }
+            return function(){
+                output();
+            }
+        }())
+        initChen();
+    </script>
+    <script>
+        // chain call
+        var chen = {
+            study : function(){
+                console.log('I love studying!');
+                return this; // return obj chen
+            },
+            exercise : function(){
+                console.log('I love exercising!!');
+                return this;
+            },
+            read : function(){
+                console.log('I love reading!!!');
+                return this;
+            }
+        }
+        chen.study().exercise().read();
+    </script>
+    <script>
+        // enumerate
+        var obj = {
+            height : "100px",
+            width : "100px",
+            border : "1px solid #ccc",
+            position : "absolute"
+        }
+        for(var prop in obj){
+            if(obj.hasOwnProperty(prop)){
+                console.log(obj[prop]);
+            }
+        }
+    </script>
+    <script>
+        // callee
+        var init = (function(n){
+            if(n == 1) return 1;
+            return n * arguments.callee(n - 1);
+        }(10))
+        console.log(init);
+    </script>
+</body>
+</html>
