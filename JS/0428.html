@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Arrays</title>
+</head>
+<body>
+    <script>
+    // declare an Array
+    var arr = [1,2,3,4,5];
+    var arr1 = new Array(1,2,3,4,5);
+    // override push
+    Array.prototype.myPush = function(){
+        var n = arguments.length;
+        for(var i = 0 ; i < n ; i ++){
+            this[this.length] = arguments[i];
+        }
+        return this.length;
+    }
+    </script> 
+    <script>
+    // override unshift
+    Array.prototype.myUnshift = function(){
+        var n = arguments.length;
+        for(var i = 0 ; i < n ; i ++){
+            this.splice(i,0,arguments[i]);
+        }
+        return this.length;
+    }
+    </script>
+    <script>
+        // asc sort by value
+        var arr2 = [3,2,1,10,29,392,12,3,-3,-3029,-1,0];
+        arr.sort(function(a,b){
+            return a - b;
+        })
+    </script>
+    <script>
+        var chen = {
+            name : "ChenXianxian",
+            age : 20,
+            gender : 'male',
+            rank : 1
+        }        
+        var meng = {
+            name : "MengZY",
+            age : 20,
+            gender : 'male',
+            rank : 32
+        }
+        var fei = {
+            name : "FeiY",
+            age : 20,
+            gender : 'male',
+            rank : 23
+        }
+        var liu = {
+            name : "LiuCJ",
+            age : 20,
+            gender : 'undefined',
+            rank : 12
+        }
+        var arr3 = [chen,liu,meng,fei];
+        arr3.sort(function(a,b){
+            return a.rank - b.rank;
+        })
+    </script>
+    <script>
+        var arr4 = [1,2,3,4,5,6,7,8,9];
+        arr4.sort(function(a,b){
+            return Math.random() - 0.5;
+        })
+    </script>
+</body>
+</html>
