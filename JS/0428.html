@@ -38,6 +38,7 @@
         })
     </script>
     <script>
+        // asc sort by rank
         var chen = {
             name : "ChenXianxian",
             age : 20,
@@ -68,9 +69,29 @@
         })
     </script>
     <script>
+        // random misorder
         var arr4 = [1,2,3,4,5,6,7,8,9];
         arr4.sort(function(a,b){
             return Math.random() - 0.5;
+        })
+    </script>
+    <script>
+        // asc sort by bytes
+        var arr5 = ['abdofajefid','a','ab','哈哈哈c','哈哈','a哈a哈a'];
+
+        function getBytes(str){
+            var res = str.length;
+            var n = str.length;
+            for(var i = 0 ; i < n ; i ++){
+                if(str.charCodeAt(i) > 255){
+                    res ++;
+                }
+            }
+            return res;
+        }
+
+        arr5.sort(function(a,b){
+            return getBytes(a) - getBytes(b);
         })
     </script>
 </body>
