@@ -2,12 +2,46 @@
     margin: 0px;
     padding: 0px;
 }
+.wrapper{
+    margin-top: 0;
+    background: url('img/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.author{
+    position: absolute;
+    top:0;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: cornflowerblue;
+}
+.msg{
+    position: absolute;
+    top: 5%;
+    left:1%;
+    font-family: Arial;
+    font-size: 28px;
+    color: indigo;
+    font-weight: bold;
+}
+.gobang{
+    position: absolute;
+    top:13%;
+    left: 4%;
+    font-family: Arial;
+    font-size: 56px;
+    color: darkorange;
+    font-weight: bold;
+}
 #chess {
     position: relative;
     width: 762px;
     height: 762px;
-    margin: 50px auto 0px auto;
-    background-image: url("img/timg.jpg");
+    margin: 0px auto 0px auto;
+    background-image: url("./img/timg.jpg");
     background-size: 100% 100%;
 }
 

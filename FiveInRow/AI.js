@@ -222,9 +222,6 @@ function compareScore(originType, originScore, originPower, nowType, nowScore, n
     if (originScore == nowScore && originPower > nowPower) {
         return true;
     }
-    if (originScore == nowScore && originPower == nowPower && originType == nowType) {
-        return Math.random() > 0.5 ? true : false;
-    }
     if (originScore == nowScore && originPower == nowPower && originType == 1) {
         return true;
     }
@@ -287,7 +284,7 @@ function aiAction() {
 
 var debugBtn = document.createElement("button");
 debugBtn.innerHTML = "开启调试模式(已关闭)";
-debugBtn.style.display = "block";
+debugBtn.style.display = "none";
 debugBtn.style.position = "relative";
 debugBtn.style.margin = "20px auto";
 debugBtn.onclick = function() {

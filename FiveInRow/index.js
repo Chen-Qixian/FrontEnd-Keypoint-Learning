@@ -54,7 +54,7 @@ function init() {//初始化方法
                 count += 1;//棋盘棋子数+1
                 var result = checkFinish();//检查是否结束
                 if (result == 0) {//没结束
-                    if (AI) {//判断是否有AI
+                    if (AI && count % 2 == 1) {//判断是否有AI
                         block = false;//关闭锁
                         aiAction();//AI落子
                     }
