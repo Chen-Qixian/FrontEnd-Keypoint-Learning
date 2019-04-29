@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Practice 0429</title>
+</head>
+<body>
+    <script>
+        // ArrayLike
+        var obj = {
+            "0" : 1,
+            "1" : 2,
+            "2" : 3,
+            "length" : 3,
+            "push" : Array.prototype.push
+        }
+    </script>
+    <script>
+        // example
+        var obj1 = {
+            "2" : 'a',
+            "3" : 'b',
+            "length" : 2,
+            "push" : Array.prototype.push
+        }
+        obj1.push('c');
+        obj1.push('d');
+    </script>
+    <script>
+        // abstract function type
+        var template = {
+            "[object Array]" : 'array',
+            "[object Object]" : 'object',
+            "[object Number]" : 'object_number',
+            "[object Boolean]" : 'object_boolean',
+            "[object String]" : 'object_string'
+        }
+        function type(target){
+            if(typeof(target) == "null"){
+                return "null";
+            }
+            else if(typeof(target) == "object"){
+                var str = Object.prototype.toString.call(target);
+                return template[str];
+            }
+            else{
+                return typeof(target);
+            }
+        }
+    </script>
+    <script>
+        // delete repeat number in array
+        var arr = [1,1,1,1,1,1,1,2,2,2,1,3,1,1,2,1,2,3,1,2,2,2,1];
+        function rmRepeat(arr){
+            var obj = {},
+                res = [],
+                n   = arr.length;
+            for(var i = 0 ; i < n ; i ++){
+                if(!obj[arr[i]]){
+                    res.push(arr[i]);
+                    obj[arr[i]] = 'xxx';
+                }
+            }
+            return res;
+        }
+    </script>
+    <script>
+        // delete repeat number in array - proto method
+        Array.prototype.unique = function(){
+            var n = this.length,
+                obj = {},
+                res = [];
+            for(var i = 0 ; i < n ; i ++){
+                if(!obj[this[i]]){
+                    obj[this[i]] = 'xxx';
+                    res.push(this[i]);
+                }
+            }
+            return res;
+        }
+    </script>
+    <script>
+        // ArrayLike to Array
+        function test(){
+            var testarr = Array.prototype.slice.call(arguments);
+            testarr.push(7);
+            return testarr[testarr.length - 1];
+        }
+        var result = test(1,2,3,4,5,6);
+        console.log(result); //7
+    </script>
+</body>
+</html>
