@@ -21,7 +21,7 @@
 .msg{
     position: absolute;
     top: 5%;
-    left:1%;
+    left:6%;
     font-family: Arial;
     font-size: 28px;
     color: indigo;
@@ -31,9 +31,59 @@
     position: absolute;
     top:13%;
     left: 4%;
-    font-family: Arial;
-    font-size: 56px;
+    font-family: KaiTi;
+    font-size: 66px;
     color: darkorange;
+    font-weight: bold;
+}
+.tishi{
+    position: absolute;
+    top:35%;
+    right: 7%;
+    height: 122px;
+    width: 200px;
+    /* border: 2px solid palevioletred; */
+    border-radius: 5px;
+}
+.heiqi{
+    height: 50px;
+    width: 100%;
+}
+.baiqi{
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+.blackpic{
+    height: 50px;
+    width: 50px;  
+    background: url('img/1.png');
+    background-size: 100%;
+    float: left;
+}
+.whitepic{
+    height: 50px;
+    width: 50px;  
+    background: url('img/2.png');
+    background-size: 100%;
+    float: left;
+}
+.blackmsg{
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    text-align: center;
+    color: chocolate;
+    font-size: 22px;
+    font-weight: bold;
+}
+.whitemsg{
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    text-align: center;
+    color: darkviolet;
+    font-size: 22px;
     font-weight: bold;
 }
 #chess {
