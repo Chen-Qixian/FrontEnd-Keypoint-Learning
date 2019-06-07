@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>循环播放图片</title>
+    <link rel="stylesheet" href="rotate.css">
+</head>
+<body>
+    <div class="wrapper">
+        <ul>
+            <li><img src="img/4.jpg" alt=""></li>
+            <li><img src="img/2.jpg" alt=""></li>
+            <li><img src="img/3.jpg" alt=""></li>
+            <li><img src="img/1.jpg" alt=""></li>
+            <!-- 注意这里补充两张图片的作用：为了防止在循环播放时出现“跳跃”的现象 -->
+            <li><img src="img/4.jpg" alt=""></li>
+            <li><img src="img/2.jpg" alt=""></li>
+        </ul>
+    </div>
+    <script src="../jquery/jquery-1.12.4.js"></script>
+    <script src="rotate.js"></script>
+</body>
+</html>

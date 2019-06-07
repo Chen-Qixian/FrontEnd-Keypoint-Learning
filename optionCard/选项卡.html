@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .content{
+            display: none;
+            width: 200px;
+            height: 200px;
+            border: 1px solid red;
+        }
+        .active{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <button class="active">Chen</button>
+    <button>Liu</button>
+    <button>Meng</button>
+    <div class="content" style="display:block">Xianxian is Handsome!</div>
+    <div class="content">Chaojing is !handsome</div>
+    <div class="content">Ziyu !like Chaojing</div>
+    <script>
+        var btn  = document.getElementsByTagName('button');
+        var oDiv = document.getElementsByClassName('content');
+        var len = btn.length;
+        for(var i = 0 ; i < len ; i ++){
+            (function(n){
+                btn[n].onclick = function(){
+                    for(var j = 0 ; j < len ; j ++){
+                        btn[j].className = "";
+                        oDiv[j].style.display = "none";
+                    }
+                    this.className = "active";
+                    oDiv[n].style.display = "block";
+                }       
+            }(i))
+        }
+    </script>
+</body>
+</html>

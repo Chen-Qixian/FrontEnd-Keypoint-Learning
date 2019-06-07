@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper{
+    height: 200px;
+    width: 600px;
+    border: 1px solid #000;
+    margin: 200px auto;
+    overflow: hidden;
+}
+
+ul{
+    height: 200px;
+    width: 1800px;
+    list-style: none;
+    /* 黑色背景用于制作蒙板，当上层li设为透明时，即体现出黑色效果 */
+    background-color: #000;
+}
+
+ul>li{
+    height: 200px;
+    width: 300px;
+    float: left;
+}
+
+img{
+    /* 为图片设置宽高 */
+    height:200px;
+    width:300px;
+}
